@@ -25,10 +25,6 @@ if test "${docker_optimizations}" = "on"; then setenv bootargs "${bootargs} cgro
 
 load ${devtype} ${devnum}:1 ${kernel_addr_r} ${prefix}${kernelimg}
 
-load ${devtype} ${devnum}:1 ${fdt_addr_r} ${prefix}${fdtfile}
-fdt addr ${fdt_addr_r}
-fdt resize 65536
-
-booti ${kernel_addr_r} - ${fdt_addr_r}
+bootm ${kernel_addr_r}
 # Recompile with:
 # mkimage -C none -A arm -T script -d /boot/boot.cmd /boot/boot.scr

@@ -2,6 +2,8 @@ DESCRIPTION = "Linux kernel for RockPi-S"
 
 require recipes-kernel/linux/linux-yocto.inc
 
+inherit kernel-fitimage
+
 # We need mkimage for the overlays
 DEPENDS += "openssl-native u-boot-mkimage-radxa-native"
 
