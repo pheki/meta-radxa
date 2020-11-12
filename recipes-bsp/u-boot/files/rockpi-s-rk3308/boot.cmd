@@ -28,32 +28,7 @@ load ${devtype} ${devnum}:1 ${kernel_addr_r} ${prefix}${kernelimg}
 load ${devtype} ${devnum}:1 ${fdt_addr_r} ${prefix}${fdtfile}
 fdt addr ${fdt_addr_r}
 fdt resize 65536
-for overlay_file in ${overlays}; do
-	if load ${devtype} ${devnum}:1 ${load_addr} ${prefix}overlays/${overlay_file}.dtbo; then
-		echo "Applying kernel provided DT overlay ${overlay_file}.dtbo"
-		fdt apply ${load_addr} || setenv overlay_error "true"
-	fi
-done
-for overlay_file in ${user_overlays}; do
-	if load ${devtype} ${devnum}:1 ${load_addr} ${prefix}overlay-user/${overlay_file}.dtbo; then
-		echo "Applying user provided DT overlay ${overlay_file}.dtbo"
-		fdt apply ${load_addr} || setenv overlay_error "true"
-	fi
-done
-if test "${overlay_error}" = "true"; then
-	echo "Error applying DT overlays, restoring original DT"
-	load ${devtype} ${devnum}:1 ${fdt_addr_r} ${prefix}${fdtfile}
-else
-	if load ${devtype} ${devnum}:1 ${load_addr} ${prefix}overlays/${overlay_prefix}-fixup.scr; then
-		echo "Applying kernel provided DT fixup script (${overlay_prefix}-fixup.scr)"
-		source ${load_addr}
-	fi
-	if test -e ${devtype} ${devnum}:1 ${prefix}overlay-user/fixup.scr; then
-		load ${devtype} ${devnum}:1 ${load_addr} ${prefix}overlay-user/fixup.scr
-		echo "Applying user provided fixup script (overlay-user/fixup.scr)"
-		source ${load_addr}
-	fi
-fi
+
 booti ${kernel_addr_r} - ${fdt_addr_r}
 # Recompile with:
 # mkimage -C none -A arm -T script -d /boot/boot.cmd /boot/boot.scr
