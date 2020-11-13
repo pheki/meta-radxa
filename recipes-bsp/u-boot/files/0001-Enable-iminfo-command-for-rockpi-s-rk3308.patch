@@ -1,0 +1,25 @@
+From 153aaaa503a803a7cdb6bf1c683393667bf7820f Mon Sep 17 00:00:00 2001
+From: Aphek <aphek@skydock.co>
+Date: Fri, 13 Nov 2020 12:40:37 -0300
+Subject: [PATCH] Enable iminfo command for rockpi-s-rk3308
+
+---
+ configs/rock-pi-s-rk3308_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/rock-pi-s-rk3308_defconfig b/configs/rock-pi-s-rk3308_defconfig
+index 4239fa3358..9d6a0c3f71 100644
+--- a/configs/rock-pi-s-rk3308_defconfig
++++ b/configs/rock-pi-s-rk3308_defconfig
+@@ -21,7 +21,7 @@ CONFIG_ANDROID_BOOTLOADER=y
+ # CONFIG_CMD_BDI is not set
+ # CONFIG_CMD_CONSOLE is not set
+ # CONFIG_CMD_ELF is not set
+-# CONFIG_CMD_IMI is not set
++CONFIG_CMD_IMI=y
+ # CONFIG_CMD_IMLS is not set
+ # CONFIG_CMD_XIMG is not set
+ # CONFIG_CMD_FLASH is not set
+-- 
+2.20.1
+

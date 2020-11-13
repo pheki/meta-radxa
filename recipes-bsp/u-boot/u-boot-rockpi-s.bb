@@ -11,6 +11,7 @@ SRC_URI = " \
 	file://0001-Makefile-disable-gcc9-s-address-of-packed-member-war.patch \
 	file://${MACHINE}/boot.cmd \
 	file://${MACHINE}/uEnv.txt \
+	file://0001-Enable-iminfo-command-for-rockpi-s-rk3308.patch \
 "
 
 SRCREV = "233a23e3ed0b3e5250253ee455c3c5df2080f99c"
